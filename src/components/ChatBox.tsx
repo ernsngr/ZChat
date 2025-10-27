@@ -6,10 +6,16 @@ import {
     Image
 } from "react-native";
 
-export const ChatBox = () => {
+interface ChatBoxProps {
+  id: string;
+  handle: (id: string) => void;
+}
+
+export const ChatBox: React.FC<ChatBoxProps> = ({id, handle}) => {
+
 
     return(
-        <View className="w-full h-24  mt-1 mb-1 flex-row ">
+        <TouchableOpacity onPress={() => handle(id)} className="w-full h-24  mt-1 mb-1 flex-row ">
           <View className="items-center justify-center p-2">
             <Image
                 className="w-[70] h-[70] rounded-full bg-gray-700 "
@@ -26,6 +32,6 @@ export const ChatBox = () => {
                 <Text className="color-white font-bold">2</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
     )
 }

@@ -8,10 +8,16 @@ import { useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { ChatBox } from "@/components/ChatBox";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ChatStackParamList } from "@/Stacks/Stacks";
+import { useNavigation } from "@react-navigation/native";
 
-export const ChatScreen = () => {
+type ChatListScreenNavigationProp = NativeStackNavigationProp<ChatStackParamList, "ChatList">
+
+export const ChatListScreen = () => {
 
     const [search, setSearch] = useState<string>();
+    const navigation = useNavigation<ChatListScreenNavigationProp>();
 
     return(
         <View className="w-full h-full items-center bg-orange-100">
@@ -19,7 +25,7 @@ export const ChatScreen = () => {
                 <Text className="text-4xl font-bold">
                     Sohbetler
                 </Text>
-                <TouchableOpacity className="w-[50] h-[50] bg-orange-300 rounded-full items-center justify-center">
+                <TouchableOpacity onPress={() => navigation.navigate("AddFriends")} className="w-[50] h-[50] bg-orange-300 rounded-full items-center justify-center">
                     <AntDesign name="plus" size={24} color="" />
                 </TouchableOpacity>
             </View>
@@ -35,11 +41,9 @@ export const ChatScreen = () => {
                     onChangeText={(txt) => setSearch(txt)}
                 />
             </View>
-            <ChatBox/>
-            <ChatBox/>
-            <ChatBox/>
-            <ChatBox/>
-            <ChatBox/> 
+            <ChatBox id="0" handle={(id: string) => navigation.navigate("ChatDetail", {chatId: id })} />
+            <ChatBox id="1" handle={(id: string) => navigation.navigate("ChatDetail", {chatId: id })} />
+            <ChatBox id="2" handle={(id: string) => navigation.navigate("ChatDetail", {chatId: id })} />
         </View>
     )
 }
