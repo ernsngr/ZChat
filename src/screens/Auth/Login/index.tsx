@@ -13,12 +13,19 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AuthStackParamList } from "@/Stacks/Stacks";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+
+// Auth Store
+import { useAuthStore } from "@/store/authStore";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList, "Login">
 
 
 export const LoginScreen = () => {
 
+    const {login, error, user} = useAuthStore();
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const navigation = useNavigation<LoginScreenNavigationProp>();
 
@@ -33,9 +40,25 @@ export const LoginScreen = () => {
                         <Text className="text-4xl font-bold font-[Inter]">Tekrar Hoş Geldin!</Text>
                         <Text className="text-xl color-slate-500"> Devam etmek için hesabına giriş yap. </Text>
                     </View>
-                    <AuthTextInput label="E-posta" isPassword={false} placeholder="eposta@adresin.com" />
-                    <AuthTextInput label="Şifre" isPassword={true} placeholder="şifre" />
-                    <TouchableOpacity className="w-[90%] h-16 bg-indigo-400 rounded-full items-center justify-center mt-8 ">
+                    <AuthTextInput 
+                        label="E-posta" 
+                        isPassword={false} 
+                        placeholder="eposta@adresin.com"
+                        value={email}
+                        setValue={setEmail}
+
+                        
+                        />
+                    <AuthTextInput 
+                        label="Şifre" 
+                        isPassword={true} 
+                        placeholder="şifre"
+                        value={password}
+                        setValue={setPassword}
+                        />
+                    <TouchableOpacity 
+                        onPress={() => login(email, password)}
+                        className="w-[90%] h-16 bg-indigo-400 rounded-full items-center justify-center mt-8 ">
                         <Text className="color-white text-2xl font-bold">
                             Giriş Yap
                         </Text>
