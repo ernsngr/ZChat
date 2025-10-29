@@ -19,10 +19,11 @@ export const ChatListScreen = () => {
     const [search, setSearch] = useState<string>();
     const navigation = useNavigation<ChatListScreenNavigationProp>();
 
+
     return(
-        <View className="w-full h-full items-center bg-orange-100">
+        <View className="w-full h-full items-center bg-white">
             <View className="w-full flex-row mt-20 justify-between items-center pl-5 pr-5"> 
-                <Text className="text-4xl font-bold">
+                <Text className="text-4xl font-bold font-[Inter] ">
                     Sohbetler
                 </Text>
                 <TouchableOpacity onPress={() => navigation.navigate("AddFriends")} className="w-[50] h-[50] bg-orange-300 rounded-full items-center justify-center">

@@ -1,3 +1,4 @@
+import SettingBox from "@/components/SettingBox";
 import { 
     View,
     Text,
@@ -28,7 +29,11 @@ export const ProfileScreen = () => {
                 <View className="w-full h-16 justify-center pl-8 pt-4 ">
                     <Text className="text-2xl font-bold">Ayarlar</Text>
                 </View>
-                
+                <View className="w-full items-center justify-center ">
+                    <SettingBox iconColor="bg-green-200" iconName="lock-outline" title="Hesap Ayarları" />
+                    <SettingBox iconColor="bg-blue-200" iconName="notifications" title="Bildirimler" />
+                    <SettingBox iconColor="bg-orange-200" iconName="palette" title="Görünüm" />
+                </View>
             </View>
         </View>
     )

@@ -9,6 +9,8 @@ import { LoginScreen } from "@/screens/Auth/Login";
 import { RegisterScreen } from "@/screens/Auth/Register";
 import { createStackNavigator } from "@react-navigation/stack";
 
+// Icons 
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 export type ChatStackParamList = {
@@ -17,16 +19,32 @@ export type ChatStackParamList = {
   AddFriends: undefined;
 }
 
+export type AuthStackParamList = {
+  Login: undefined;
+  Register: undefined;
+}
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator<ChatStackParamList>();
+const StackAuth = createStackNavigator();
 
   export const AppStack = () => {
     return(
       <Tab.Navigator screenOptions={{
         headerShown: false
       }}>
-        <Tab.Screen name='ChatStack' component={ChatStack}/>
-        <Tab.Screen name='Profile' component={ProfileScreen}/>
+        <Tab.Screen options={{
+          title: "Sohbetler",
+          tabBarActiveTintColor: "#de882c",
+          tabBarLabelStyle: { fontSize: 12, fontWeight: "600", fontFamily: "Inter" },
+          tabBarIcon: ({focused}) => <Ionicons name={focused ? "chatbubbles" : "chatbubbles-outline"} size={24} color={focused ? "#de882c" : "#9c9c9c"} />
+          }} name='ChatStack' component={ChatStack}/>
+        <Tab.Screen options={{
+          title: "Sohbetler",
+          tabBarActiveTintColor: "#de882c",
+          tabBarLabelStyle: { fontSize: 12, fontWeight: "600", fontFamily: "Inter" },
+          tabBarIcon: ({focused}) => <Ionicons name={focused ? "person-circle" : "person-circle-outline"} size={24} color={focused ? "#de882c" : "#9c9c9c"} />
+          }} name='Profile' component={ProfileScreen}/>
       </Tab.Navigator>
     )
   }
@@ -45,9 +63,9 @@ const Stack = createStackNavigator<ChatStackParamList>();
 
   export const AuthStack = () => {
     return(
-      <Tab.Navigator>
-        <Tab.Screen name='Login' component={LoginScreen}/>
-        <Tab.Screen name='Register' component={RegisterScreen}/>
-      </Tab.Navigator>
+      <StackAuth.Navigator screenOptions={{headerShown: false}} initialRouteName="Login">
+        <StackAuth.Screen name='Login' component={LoginScreen}/>
+        <StackAuth.Screen name='Register' component={RegisterScreen}/>
+      </StackAuth.Navigator>
     )
   }

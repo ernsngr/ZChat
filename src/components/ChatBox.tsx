@@ -23,8 +23,8 @@ export const ChatBox: React.FC<ChatBoxProps> = ({id, handle}) => {
             />
           </View>
           <View className="w-[60%] h-[90%] items-start justify-evenly pt-1 pb-1 ">
-            <Text className="text-xl font-bold ">Eren Sungur</Text>
-            <Text className="text-md color-gray-500">Mesaj içeriği mesaj içeriği</Text>
+            <Text className="text-xl font-bold font-[Inter]">Eren Sungur</Text>
+            <Text className="text-md color-gray-500 font-[Inter]">Mesaj içeriği mesaj içeriği</Text>
           </View>
           <View className="w-[20%] h-full items-center justify-evenly pt-2 pb-2">
             <Text className="color-slate-500">15:42</Text>
